@@ -1,0 +1,75 @@
+.home-container {
+  font-family: 'Serif', 'Georgia', serif; /* Rappelle le côté ancien */
+}
+
+.hero-section {
+  height: 90vh; /* Presque toute la hauteur de l'écran, pour l'immersion */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), /* Overlay sombre pour lire le texte */
+                    url('../assets/hero-home.png'); /* C'est ici qu'on mettra l'image générée (image_4.png) */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallaxe subtile */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-since {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  color: #b8926a; /* Doré pour l'expertise */
+  font-weight: bold;
+}
+
+.hero-title {
+  font-family: 'Serif', 'Georgia', serif;
+  font-size: 3rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e5e5e5;
+  margin: 0 0 30px 0;
+}
+
+/* Bouton de Maintenance */
+.maintenance-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #b8926a; /* Couleur d'accent doré */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.maintenance-btn:hover {
+  background-color: transparent;
+  border: 2px solid #b8926a;
+}
+
+.btn-icon {
+  color: #fff;
+}
