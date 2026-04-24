@@ -6,7 +6,9 @@
   height: 90vh; /* Presque toute la hauteur de l'écran, pour l'immersion */
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), /* Overlay sombre pour lire le texte */
                     url('../assets/hero-home.png'); /* C'est ici qu'on mettra l'image générée (image_4.png) */
-  background-size: cover;
+  background-size: contain;
+background-repeat: no-repeat;
+background-color: black; /* pour éviter les bandes blanches */
   background-position: center;
   background-attachment: fixed; /* Parallaxe subtile */
   display: flex;

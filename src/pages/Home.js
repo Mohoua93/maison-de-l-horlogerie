@@ -10,14 +10,9 @@ const Home = () => {
       <section className="hero-section">
         {/* L'image de fond est gérée en CSS */}
         <div className="hero-content">
-          <span className="hero-since">Expertise depuis 2000</span>
-          
-          <h1 className="hero-title">
-            Redonnez vie à vos garde-temps de collection
-          </h1>
-          
+          <h1 className="hero-since">Expertise depuis 20ans</h1>
           <p className="hero-description">
-            La Maison de l'Horlogerie met 20 ans de savoir-faire au service de la restauration d'art et de la maintenance de précision. De la pendule de collection au mouvement mécanique de haute horlogerie, chaque intervention est une affaire de passion.
+            Depuis trois générations, La Maison de l'Horlogerie perpétue la passion de la précision et l'amour du travail bien fait. Notre atelier est le fruit d'un véritable héritage familial où les secrets de l'artisanat se transmettent avec ferveur de père en fils.
           </p>
           
           <Link to="/maintenance" className="maintenance-btn">
