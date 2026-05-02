@@ -31,8 +31,8 @@ const Header = () => {
             </li>
 
             <li>
-              <NavLink to="/restauration" className={getNavClass}>
-                Restauration
+              <NavLink to="/services" className={getNavClass}>
+                Services
               </NavLink>
             </li>
 
