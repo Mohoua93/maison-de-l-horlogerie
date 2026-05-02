@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Watch, Menu, Phone, User } from 'lucide-react';
+import { Watch, Menu, Phone} from 'lucide-react';
 import '../styles/Header.css';
 
 const Header = () => {
@@ -52,14 +52,10 @@ const Header = () => {
 
         {/* Actions Rapides */}
         <div className="header-actions">
-          <a href="tel:+33123456789" className="action-link">
+          <a href="tel:+32496662863" className="action-link">
             <Phone size={20} />
           </a>
 
-          <button className="account-btn" type="button">
-            <User size={20} />
-            <span>Espace Client</span>
-          </button>
 
           <button className="mobile-menu" type="button">
             <Menu size={24} />
