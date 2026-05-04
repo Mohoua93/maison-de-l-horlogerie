@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Contact.css';
 
 const Contact = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    city: '',
     subject: '',
     message: '',
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,21 +27,45 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Message envoyé :', formData);
+    setIsSubmitting(true);
+    setFormError('');
 
-    // Ici, on branchera plus tard ton backend Render
-    alert('Votre message a bien été préparé. Le formulaire sera bientôt connecté au backend.');
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Erreur lors de l’envoi du message.');
+      }
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        city: '',
+        subject: '',
+        message: '',
+      });
+
+      navigate('/merci');
+    } catch (error) {
+      console.error('Erreur formulaire contact :', error);
+      setFormError(
+        'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,12 +77,12 @@ const Contact = () => {
         <div className="contact-hero-content">
           <p className="contact-label">Contact</p>
 
-          <h1>Confiez-nous votre pièce d’horlogerie</h1>
+          <h1>Contactez un atelier d’horlogerie ancienne en Belgique</h1>
 
           <p>
-            Une horloge ancienne à restaurer, une pendule à entretenir ou un
-            mécanisme à diagnostiquer ? Contactez notre atelier pour une demande
-            personnalisée.
+            Une horloge ancienne à restaurer, une pendule à entretenir ou un mécanisme
+            à diagnostiquer ? Contactez notre atelier situé à Bruxelles et intervenant
+            en Belgique pour une demande personnalisée.
           </p>
         </div>
       </section>
@@ -77,8 +108,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  
-                  <p>+32 496 66 28 63</p>
+                  <a href="tel:+32496662863">+32 496 66 28 63</a>
                 </div>
               </div>
 
@@ -88,8 +118,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  
-                  <p>contact@maisondelhorlogerie.fr</p>
+                  <a href="mailto:contact@maisondelhorlogerie.fr">
+                    contact@maisondelhorlogerie.fr
+                  </a>
                 </div>
               </div>
 
@@ -99,7 +130,6 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  
                   <p>Bruxelles, Belgique</p>
                 </div>
               </div>
@@ -110,7 +140,6 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  
                   <p>Lundi - Vendredi : 9h00 - 18h00</p>
                 </div>
               </div>
@@ -119,6 +148,8 @@ const Contact = () => {
 
           <div className="contact-form-wrapper">
             <form className="contact-form" onSubmit={handleSubmit}>
+              <input type="hidden" name="formulaire" value="Contact général" />
+
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Nom complet</label>
@@ -161,22 +192,37 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="subject">Sujet</label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
+                  <label htmlFor="city">Ville en Belgique</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    placeholder="Ex : Bruxelles, Liège, Namur..."
+                    value={formData.city}
                     onChange={handleChange}
                     required
-                  >
-                    <option value="">Choisir un sujet</option>
-                    <option value="Entretien">Entretien régulier</option>
-                    <option value="Réparation">Réparation</option>
-                    <option value="Restauration">Restauration ancienne</option>
-                    <option value="Diagnostic">Diagnostic horloger</option>
-                    <option value="Autre">Autre demande</option>
-                  </select>
+                  />
                 </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="subject">Sujet</label>
+                <select
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Choisir un sujet</option>
+                  <option value="Entretien">Entretien régulier</option>
+                  <option value="Réparation">Réparation</option>
+                  <option value="Restauration">Restauration ancienne</option>
+                  <option value="Diagnostic">Diagnostic horloger</option>
+                  <option value="Horloge ancienne">Horloge ancienne</option>
+                  <option value="Pendule ancienne">Pendule ancienne</option>
+                  <option value="Autre">Autre demande</option>
+                </select>
               </div>
 
               <div className="form-group">
@@ -192,8 +238,14 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="contact-submit-btn">
-                Envoyer ma demande
+              {formError && <p className="form-error">{formError}</p>}
+
+              <button
+                type="submit"
+                className="contact-submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                 <Send size={18} />
               </button>
             </form>

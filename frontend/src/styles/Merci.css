@@ -1,0 +1,90 @@
+.merci-page {
+  min-height: 100vh;
+  padding: 140px 24px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(
+      135deg,
+      #0f0d0a 0%,
+      #18120b 50%,
+      #2a1d0f 100%
+    );
+  color: #f8f3e8;
+}
+
+.merci-card {
+  width: 100%;
+  max-width: 760px;
+  padding: 54px;
+  text-align: center;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 30px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(255, 255, 255, 0.025) 100%
+    );
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.merci-label {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 8px 16px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 999px;
+  color: #d4af37;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: rgba(212, 175, 55, 0.08);
+}
+
+.merci-card h1 {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 500;
+  color: #f8f3e8;
+}
+
+.merci-card p:not(.merci-label) {
+  max-width: 580px;
+  margin: 24px auto 0;
+  color: #d8cfbf;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.merci-btn {
+  margin-top: 34px;
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background-color: #d4af37;
+  color: #15110a;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+}
+
+.merci-btn:hover {
+  background-color: #f0cc5c;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(212, 175, 55, 0.35);
+}
+
+@media screen and (max-width: 600px) {
+  .merci-card {
+    padding: 34px 24px;
+    border-radius: 24px;
+  }
+}

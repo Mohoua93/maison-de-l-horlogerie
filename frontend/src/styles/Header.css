@@ -1,121 +1,208 @@
+/* STRUCTURE PRINCIPALE */
 .main-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 1rem 2rem;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+  padding: 0.9rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 32px;
 }
 
-/* LOGO */
+/* LOGO TEXTUEL STYLISÉ */
 .logo-section {
+  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 12px;
-  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
 }
 
-.logo-icon {
-  color: #b8926a;
+.logo-section:hover {
+  opacity: 0.8;
 }
 
-.brand-text h1 {
-  font-family: 'Serif', 'Georgia', serif;
-  font-size: 1.2rem;
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Bordure dorée fine pour structurer le logo textuel */
+  border-left: 2px solid #b8926a;
+  padding-left: 15px;
+  line-height: 1.2;
+}
+
+.brand-title {
   margin: 0;
-  letter-spacing: 1px;
-  color: #1a1a1a;
+  /* Police Serif pour l'aspect prestige et horlogerie */
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #17120c;
+  text-transform: uppercase;
 }
 
-.brand-text span {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  color: #888;
+.brand-subtitle {
   display: block;
+  margin-top: 2px;
+  color: #b8926a;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
 }
 
 /* NAVIGATION */
 .nav-menu ul {
   display: flex;
+  align-items: center;
   list-style: none;
   gap: 30px;
   margin: 0;
   padding: 0;
 }
 
-/* Classe utilisée dans ton JSX */
 .nav-link {
+  position: relative;
+  display: inline-block;
   text-decoration: none;
-  color: #444;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
+  color: #3c342b;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Hover */
 .nav-link:hover {
   color: #b8926a;
 }
 
+.nav-link.active {
+  color: #b8926a;
+}
 
-
-/* Option premium : petit trait en dessous */
 .nav-link.active::after {
   content: "";
   position: absolute;
   bottom: -6px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 1.5px;
   background-color: #c9a96e;
+  border-radius: 2px;
 }
 
-/* ACTIONS */
+/* ACTIONS (TÉLÉPHONE & MOBILE) */
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  flex-shrink: 0;
 }
 
-.account-btn {
-  display: flex;
+.action-link {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background-color: #1a1a1a;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.3s;
+  justify-content: center;
+  border: 1px solid rgba(184, 146, 106, 0.3);
+  border-radius: 50%;
+  color: #b8926a;
+  background-color: rgba(184, 146, 106, 0.05);
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.account-btn:hover {
-  opacity: 0.8;
+.action-link:hover {
+  color: #ffffff;
+  background-color: #b8926a;
+  transform: translateY(-2px);
 }
 
-/* MOBILE */
 .mobile-menu {
   display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(184, 146, 106, 0.3);
+  border-radius: 50%;
+  color: #17120c;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
+/* RESPONSIVE TABLETTE */
+@media screen and (max-width: 1024px) {
+  .header-container {
+    gap: 20px;
+  }
+  .nav-menu ul {
+    gap: 18px;
+  }
+  .brand-title {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* RESPONSIVE MOBILE */
+@media screen and (max-width: 768px) {
+  .main-header {
+    padding: 0.75rem 1.2rem;
+  }
+  
+  .brand-text {
+    padding-left: 10px;
+    border-left-width: 1.5px;
+  }
+
+  .brand-title {
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+  }
+
+  .brand-subtitle {
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+  }
+
   .nav-menu {
-    display: none;
+    display: none; /* Menu burger nécessaire ici via JS */
   }
 
   .mobile-menu {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
+    display: inline-flex;
+  }
+}
+
+/* PETIT MOBILE */
+@media screen and (max-width: 480px) {
+  .brand-title {
+    font-size: 0.85rem;
+    max-width: 130px;
+  }
+  
+  .header-actions {
+    gap: 8px;
+  }
+  
+  .action-link, .mobile-menu {
+    width: 36px;
+    height: 36px;
   }
 }

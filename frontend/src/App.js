@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Maintenance from './pages/Maintenance';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Merci from './pages/Merci';
 
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/maintenance" element={<Maintenance />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/merci" element={<Merci />} />
           </Routes>
         </main>
 
