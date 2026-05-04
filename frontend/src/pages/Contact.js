@@ -18,6 +18,8 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -34,7 +36,7 @@ const Contact = () => {
     setFormError('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/contact`, {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +44,8 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : {};
 
       if (!response.ok) {
         throw new Error(data.message || 'Erreur lors de l’envoi du message.');
