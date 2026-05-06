@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Merci.css';
 
 const Merci = () => {
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-18139462134/-tdLCIecu6ccEPbzyM1D',
+        value: 1.0,
+        currency: 'EUR',
+      });
+    }
+  }, []);
+
   return (
     <main className="merci-page">
       <section className="merci-card">
