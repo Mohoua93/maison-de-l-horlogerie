@@ -20,6 +20,14 @@ const Contact = () => {
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
+  const handlePhoneClick = () => {
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-18139462134/3Zc-CK-yvbEcEPbzyMlD',
+      });
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -111,7 +119,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <a href="tel:+32496662863">+32 496 66 28 63</a>
+                  <a href="tel:+32496662863" onClick={handlePhoneClick}>
+                    +32 496 66 28 63
+                  </a>
                 </div>
               </div>
 
