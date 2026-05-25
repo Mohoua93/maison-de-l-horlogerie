@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
@@ -23,15 +22,20 @@ console.log('SMTP_PASS existe :', !!process.env.SMTP_PASS);
 console.log('CONTACT_RECEIVER :', process.env.CONTACT_RECEIVER);
 console.log('==============================');
 
-// Middleware CORS
-app.options('*', cors());
-app.use(
-  cors({
-    origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-  })
-);
+// Middleware CORS manuel
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 app.use(express.json());
 
