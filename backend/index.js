@@ -24,6 +24,7 @@ console.log('CONTACT_RECEIVER :', process.env.CONTACT_RECEIVER);
 console.log('==============================');
 
 // Middleware CORS
+app.options('*', cors());
 app.use(
   cors({
     origin: allowedOrigins,
