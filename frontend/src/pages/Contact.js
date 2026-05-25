@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Contact.css';
@@ -19,6 +19,11 @@ const Contact = () => {
   const [formError, setFormError] = useState('');
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
+  // Ping le serveur au chargement pour le réveiller
+  useEffect(() => {
+    fetch(`${API_URL}/api/status`).catch(() => {});
+  }, [API_URL]);
 
   const handlePhoneClick = () => {
     if (window.gtag) {
@@ -56,7 +61,7 @@ const Contact = () => {
       const data = text ? JSON.parse(text) : {};
 
       if (!response.ok) {
-        throw new Error(data.message || 'Erreur lors de l’envoi du message.');
+        throw new Error(data.message || 'Erreur lors de l\'envoi du message.');
       }
 
       setFormData({
@@ -88,7 +93,7 @@ const Contact = () => {
         <div className="contact-hero-content">
           <p className="contact-label">Contact</p>
 
-          <h1>Contactez un atelier d’horlogerie ancienne en Belgique</h1>
+          <h1>Contactez un atelier d'horlogerie ancienne en Belgique</h1>
 
           <p>
             Une horloge ancienne à restaurer, une pendule à entretenir ou un mécanisme
@@ -108,7 +113,7 @@ const Contact = () => {
 
             <p className="contact-description">
               Décrivez-nous votre besoin : entretien, réparation, restauration
-              ou diagnostic. Nous prendrons le temps d’étudier votre demande
+              ou diagnostic. Nous prendrons le temps d'étudier votre demande
               avec soin afin de vous proposer une intervention adaptée.
             </p>
 
@@ -243,7 +248,7 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Décrivez votre horloge, son état, le problème rencontré ou le type d’intervention souhaité..."
+                  placeholder="Décrivez votre horloge, son état, le problème rencontré ou le type d'intervention souhaité..."
                   rows="7"
                   value={formData.message}
                   onChange={handleChange}
