@@ -14,6 +14,16 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const handlePhoneClick = () => {
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-18139462134/3Zc-CK-yvbEcEPbzyMlD',
+      });
+    }
+
+    closeMenu();
+  };
+
   return (
     <header className="main-header">
       <div className="header-container">
@@ -33,16 +43,19 @@ const Header = () => {
                 Accueil
               </NavLink>
             </li>
+
             <li>
               <NavLink to="/services" className={getNavClass} onClick={closeMenu}>
                 Services
               </NavLink>
             </li>
+
             <li>
               <NavLink to="/maintenance" className={getNavClass} onClick={closeMenu}>
                 Maintenance
               </NavLink>
             </li>
+
             <li>
               <NavLink to="/contact" className={getNavClass} onClick={closeMenu}>
                 Contact
@@ -53,7 +66,12 @@ const Header = () => {
 
         {/* Actions Rapides */}
         <div className="header-actions">
-          <a href="tel:+32496662863" className="action-link" aria-label="Appeler">
+          <a
+            href="tel:+32496662863"
+            className="action-link"
+            aria-label="Appeler"
+            onClick={handlePhoneClick}
+          >
             <Phone size={20} />
           </a>
 
