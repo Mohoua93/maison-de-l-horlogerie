@@ -31,7 +31,7 @@ const Home = () => {
           <div className="hero-actions">
             <a href="tel:+32496662863" className="maintenance-btn">
               <Phone size={20} className="btn-icon" />
-              Appelez maintenant — 0496 66 28 63
+              Appelez maintenant — +32496 66 28 63
             </a>
 
             <Link to="/services" className="secondary-btn">
