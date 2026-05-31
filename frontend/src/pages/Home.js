@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Settings, Clock, ShieldCheck, Wrench } from 'lucide-react';
+import { Phone, Clock, ShieldCheck, Wrench } from 'lucide-react';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -10,10 +10,10 @@ const Home = () => {
         <div className="hero-overlay"></div>
 
         <div className="hero-content">
-          <p className="hero-label">Atelier d’horlogerie ancienne</p>
+          <p className="hero-label">Atelier d'horlogerie ancienne</p>
 
           <h1 className="hero-title">
-            Préserver le temps, restaurer l’excellence.
+            Préserver le temps, restaurer l'excellence.
           </h1>
 
           <p className="hero-since">
@@ -21,17 +21,18 @@ const Home = () => {
           </p>
 
           <p className="hero-description">
-            Depuis trois générations, notre maison perpétue l’art de la précision
+            Depuis trois générations, notre maison perpétue l'art de la précision
             et le respect des mécanismes anciens. Chaque montre, pendule ou horloge
-            confiée à notre atelier bénéficie d’un savoir-faire minutieux, transmis
+            confiée à notre atelier bénéficie d'un savoir-faire minutieux, transmis
             avec passion et exigence.
           </p>
+          
 
           <div className="hero-actions">
-            <Link to="/maintenance" className="maintenance-btn">
-              <Settings size={20} className="btn-icon" />
-              Planifier une maintenance
-            </Link>
+            <a href="tel:+32496662863" className="maintenance-btn">
+              <Phone size={20} className="btn-icon" />
+              Appelez maintenant — 0496 66 28 63
+            </a>
 
             <Link to="/services" className="secondary-btn">
               Découvrir nos services
